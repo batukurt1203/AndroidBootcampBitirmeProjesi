@@ -1,6 +1,7 @@
 Bu proje Pupilica'nın Android Bootcamp'i için hazırladığım bitirme projesidir.
 Projemde bir yemek sipariş uygulaması oluşturdum.Uygulama giriş,yemekler ve sepet ekranlarından oluşuyor.
 Giriş ekranından diğer iki ekrana da geçiş mevcut.
+
 ![Ekran görüntüsü 2025-05-30 005508](https://github.com/user-attachments/assets/c32e2d4a-f83d-447a-900b-a972762a562b)
 ![Ekran görüntüsü 2025-05-30 005523](https://github.com/user-attachments/assets/5eaf6491-c73f-4ad1-95a4-053508701eca)
 
