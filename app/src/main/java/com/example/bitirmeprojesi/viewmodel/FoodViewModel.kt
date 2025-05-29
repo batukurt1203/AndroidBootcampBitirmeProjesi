@@ -4,11 +4,9 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.example.bitirmeprojesi.data.model.Food
 import com.example.bitirmeprojesi.data.network.RetrofitClient
-import com.example.bitirmeprojesi.data.repository.FoodRepository
 import kotlinx.coroutines.launch
 
 class FoodViewModel : ViewModel() {
-    private val repo = FoodRepository()
     val foods = MutableLiveData<List<Food>?>()
     val loading = MutableLiveData<Boolean>()
     val error = MutableLiveData<String?>()

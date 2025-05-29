@@ -16,7 +16,6 @@ class CartViewModel : ViewModel() {
     val cartItems = MutableLiveData<List<CartItem>>()
     val loading = MutableLiveData<Boolean>()
     val error = MutableLiveData<String?>()
- //   private val api = RetrofitClient.foodService
 
     fun fetchCart(kullaniciAdi: String) {
         viewModelScope.launch {
@@ -50,7 +49,7 @@ class CartViewModel : ViewModel() {
                 error.value = "Sunucu hatası: ${e.code()}"
                 Log.e("CartViewModel", "HTTP error: ${e.code()}", e)
             } catch (e: IOException) {
-        //        error.value = "İnternet bağlantısı hatası"
+                error.value = "İnternet bağlantısı hatası"
                 Log.e("CartViewModel", "Network error", e)
             } catch (e: Exception) {
                 error.value = "Beklenmeyen bir hata oluştu"
@@ -111,7 +110,7 @@ class CartViewModel : ViewModel() {
             } catch (e: HttpException) {
                 error.value = "Sunucu hatası: ${e.code()}"
             } catch (e: IOException) {
-                // error.value = "İnternet bağlantısı hatası"
+                 error.value = "İnternet bağlantısı hatası"
                 Log.e("CartViewModel", "Network error", e)
             } catch (e: Exception) {
                 error.value = "Beklenmeyen bir hata oluştu"
@@ -169,7 +168,7 @@ class CartViewModel : ViewModel() {
             } catch (e: HttpException) {
                 error.value = "Sunucu hatası: ${e.code()}"
             } catch (e: IOException) {
-        //        error.value = "İnternet bağlantısı hatası"
+                error.value = "İnternet bağlantısı hatası"
             } catch (e: Exception) {
                 error.value = "Beklenmeyen bir hata oluştu"
             } finally {
