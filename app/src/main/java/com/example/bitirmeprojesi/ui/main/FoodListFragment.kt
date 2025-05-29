@@ -72,6 +72,7 @@ class FoodListFragment : Fragment() {
         setupRecyclerView()
         setupObservers()
         viewModel.fetchFoods()
+        (requireActivity() as MainActivity).setToolbarTitle("Yemekler")
     }
 
     private fun setupRecyclerView() {
@@ -138,6 +139,8 @@ class FoodListFragment : Fragment() {
                     else -> allFoods
                 }
                 adapter?.updateFoods(filteredFoods)
+                val title = categories[which]
+                (requireActivity() as MainActivity).setToolbarTitle(if (title == "Tümü") "Yemekler" else title)
             }
             .show()
     }

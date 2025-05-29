@@ -31,4 +31,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+    fun setToolbarTitle(title: String) {
+        binding.toolbar.title = title
+    }
 }

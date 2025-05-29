@@ -5,6 +5,8 @@ import androidx.lifecycle.*
 import com.example.bitirmeprojesi.data.model.CartItem
 import com.example.bitirmeprojesi.data.network.RetrofitClient
 import com.example.bitirmeprojesi.data.repository.FoodRepository
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -96,17 +98,16 @@ class CartViewModel : ViewModel() {
         viewModelScope.launch {
             loading.value = true
             try {
-                // Sepetteki tüm ürünleri sil
-                cartItems.value?.forEach { item ->
-                    repo.removeFromCart(item.sepet_yemek_id.toInt(), kullaniciAdi)
-                }
+                // Sepetteki tüm ürünleri sil (hepsinin tamamlanmasını bekle)
+                val jobs = cartItems.value?.map { item ->
+                    async {
+                        repo.removeFromCart(item.sepet_yemek_id.toInt(), kullaniciAdi)
+                    }
+                } ?: emptyList()
+                jobs.awaitAll()
                 // Sepeti temizle
-                if (cartItems.value?.size == 0) {
-                    error.value = "Sepetiniz boş!"
-                } else {
-                    cartItems.value = emptyList()
-                    error.value = "Siparişiniz alındı!"
-                }
+                cartItems.value = emptyList()
+                error.value = "Siparişiniz alındı!"
             } catch (e: HttpException) {
                 error.value = "Sunucu hatası: ${e.code()}"
             } catch (e: IOException) {
