@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainMenuFragment">
+
+    <fragment
+        android:id="@+id/mainMenuFragment"
+        android:name="com.example.bitirmeprojesi.ui.main.MainMenuFragment"
+        android:label="Ana Menü">
+        <action
+            android:id="@+id/action_mainMenuFragment_to_foodListFragment"
+            app:destination="@id/foodListFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_mainMenuFragment_to_cartFragment"
+            app:destination="@id/cartFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/foodListFragment"
+        android:name="com.example.bitirmeprojesi.ui.main.FoodListFragment"
+        android:label="Yemekler">
+        <action
+            android:id="@+id/action_foodListFragment_to_foodDetailFragment"
+            app:destination="@id/foodDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_foodListFragment_to_cartFragment"
+            app:destination="@id/cartFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/foodDetailFragment"
+        android:name="com.example.bitirmeprojesi.ui.detail.FoodDetailFragment"
+        android:label="Yemek Detayı">
+        <argument
+            android:name="food"
+            app:argType="com.example.bitirmeprojesi.data.model.Food" />
+        <action
+            android:id="@+id/action_foodDetailFragment_to_cartFragment"
+            app:destination="@id/cartFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.bitirmeprojesi.ui.cart.CartFragment"
+        android:label="Sepetim"/>
+</navigation>
